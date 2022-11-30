@@ -1,0 +1,16 @@
+info.enumerateDraggingItems(options: [.concurrent], for: outlineView, classes: [NSPasteboardItem.self], searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey:NSNumber(value:false)] )
+{ (draggingItem:NSDraggingItem!, idx:Int, stop:UnsafeMutablePointer<ObjCBool>) in
+     let images = draggingItem.imageComponents?.filter(){
+          (component:NSDraggingImageComponent) in
+           if component.key == NSDraggingImageComponentIconKey {
+                return true
+           }
+
+           return false
+     }
+
+     if let image = images?[0]
+     {
+           draggingItem.setDraggingFrame(NEW FRAME, contents: image.contents)
+     }
+}
